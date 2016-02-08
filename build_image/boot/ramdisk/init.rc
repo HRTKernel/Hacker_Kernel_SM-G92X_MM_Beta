@@ -14,6 +14,7 @@ import /init.carrier.rc
 import /init.sec_debug.rc
 import /init.container.rc
 import /init.rilcommon.rc
+import /init.hacker.rc
 
 on early-init
     # Set init and its forked children's oom_adj.
@@ -1666,6 +1667,19 @@ service daemonsu /sbin/launch_daemonsu.sh
     user root
     seclabel u:r:init:s0
     oneshot
+
+# init HackerKernel
+service hackerinit /sbin/hacker.sh
+    class main
+    user root
+    oneshot
+
+# init.d support enabler
+service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+    class late_start
+    user root
+    group shell
+    oneshot    
 
 # SuperSU:PATCH:266
 # SuperSU:STOCK:9a4008680bc6d46f7d02db2b59f0d5dbaf2877ae

@@ -1,0 +1,35 @@
+#
+# ADDITIONAL_DEFAULT_PROPERTIES
+#
+telephony.lteOnCdmaDevice=0
+rild.libpath=/system/lib64/libsec-ril.so
+persist.security.ams.enforcing=0
+ro.secure=0
+ro.allow.mock.location=0
+ro.debuggable=1
+ro.adb.secure=0
+persist.sys.usb.config=mtp,adb
+ro.zygote=zygote64_32
+dalvik.vm.image-dex2oat-Xms=64m
+dalvik.vm.image-dex2oat-Xmx=64m
+dalvik.vm.dex2oat-Xms=64m
+dalvik.vm.dex2oat-Xmx=512m
+ro.dalvik.vm.native.bridge=0
+debug.atrace.tags.enableflags=0
+#
+# HRT KERNEL
+#
+persist.cne.feature=0
+ro.config.tima=0
+ro.config.knox=0
+androidboot.selinux=0
+ro.securestorage.knox=false
+ro.securestorage.support=false
+ro.security.mdpp.ux=Disabled
+wlan.wfd.hdcp=disable
+#
+# BOOTIMAGE_BUILD_PROPERTIES
+#
+ro.bootimage.build.date=Wed Jan 6 17:58:13 KST 2016
+ro.bootimage.build.date.utc=1452070693
+ro.bootimage.build.fingerprint=samsung/zeroltexx/zerolte:6.0.1/MMB29K/G925FXXU3ZPA1:user/test-keys
