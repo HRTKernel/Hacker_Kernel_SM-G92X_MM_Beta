@@ -25,7 +25,6 @@ cat << CTAG
 			`. /res/synapse/config.json.generate.storage`
 			`. /res/synapse/config.json.generate.powersuspend`
 			`. /res/synapse/json.gen.crontab`
-			`. /res/synapse/json.gen.modules`
 			`. /res/synapse/config.json.generate.vm`
 			`. /res/synapse/config.json.generate.network`
 			`. /res/synapse/config.json.generate.security`
@@ -56,7 +55,6 @@ cat << CTAG
 			`. /res/synapse/config.json.generate.storage`
 			`. /res/synapse/config.json.generate.powersuspend`
 			`. /res/synapse/json.gen.crontab`
-			`. /res/synapse/json.gen.modules`
 			`. /res/synapse/config.json.generate.vm`
 			`. /res/synapse/config.json.generate.network`
 			`. /res/synapse/config.json.generate.security`
