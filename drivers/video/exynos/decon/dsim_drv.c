@@ -52,6 +52,7 @@
 #include "decon.h"
 
 #include "panels/dsim_panel.h"
+#include <linux/variant_detection.h>
 
 static DEFINE_MUTEX(dsim_rd_wr_mutex);
 static DECLARE_COMPLETION(dsim_ph_wr_comp);
@@ -153,7 +154,7 @@ static int dsim_wait_for_cmd_fifo_empty(struct dsim_device *dsim, int id)
 	unsigned long wr_timeout = MIPI_WR_TIMEOUT;
 
 #ifdef CONFIG_LCD_ALPM
-	if(dsim->alpm)
+	if(dsim->alpm && variant_edge == IS_EDGE)
 		wr_timeout *= ALPM_TIMEOUT;
 #endif
 
@@ -503,7 +504,7 @@ int dsim_read_data(struct dsim_device *dsim, u32 data_id,
 	unsigned long rd_timeout = MIPI_RD_TIMEOUT;
 
 #ifdef CONFIG_LCD_ALPM
-	if(dsim->alpm)
+	if(dsim->alpm && variant_edge == IS_EDGE)
 		rd_timeout *= ALPM_TIMEOUT;
 #endif
 
@@ -946,7 +947,7 @@ static int dsim_reset_panel(struct dsim_device *dsim)
 	int ret;
 
 #ifdef CONFIG_LCD_ALPM
-	if (dsim->alpm)
+	if (dsim->alpm && variant_edge == IS_EDGE)
 		return 0;
 #endif
 
@@ -987,7 +988,7 @@ static int dsim_set_panel_power(struct dsim_device *dsim, bool on)
 	int ret;
 
 #ifdef CONFIG_LCD_ALPM
-	if (dsim->alpm)
+	if (dsim->alpm && variant_edge == IS_EDGE)
 		return 0;
 #endif
 
@@ -1165,7 +1166,7 @@ static int dsim_enable(struct dsim_device *dsim)
 	dsim_reg_set_lanes(dsim->id, DSIM_LANE_CLOCK | dsim->data_lane, 1);
 
 #ifdef CONFIG_LCD_ALPM
-	if(dsim->alpm)
+	if(dsim->alpm && variant_edge == IS_EDGE)
 		dsim_set_ulps_by_ddi(dsim, 0);
 #endif
 
@@ -1211,7 +1212,7 @@ static int dsim_disable(struct dsim_device *dsim)
 	dsim_reg_set_hs_clock(dsim->id, &dsim->lcd_info, 0);
 
 #ifdef CONFIG_LCD_ALPM
-	if(dsim->alpm)
+	if(dsim->alpm && variant_edge == IS_EDGE)
 		dsim_set_ulps_by_ddi(dsim, 1);
 #endif
 
@@ -1835,7 +1836,8 @@ dsim_init_done:
 		dsim->lcd_info.mode == DECON_MIPI_COMMAND_MODE ? "CMD" : "VIDEO");
 
 #ifdef CONFIG_LCD_ALPM
-	dsim->alpm = 0;
+	if (variant_edge == IS_EDGE)
+		dsim->alpm = 0;
 #endif
 
 	return 0;
