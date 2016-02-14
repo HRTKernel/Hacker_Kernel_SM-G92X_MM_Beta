@@ -35,3 +35,14 @@ wlan.wfd.hdcp=disable
 ro.bootimage.build.date=Wed Jan 6 18:56:50 KST 2016
 ro.bootimage.build.date.utc=1452074210
 ro.bootimage.build.fingerprint=samsung/zerofltexx/zeroflte:6.0.1/MMB29K/G920FXXU3ZPA1:user/test-keys
+#
+# Memory managements
+#
+ro.config.dha_cached_min=12
+ro.config.dha_cached_max=24
+ro.config.dha_empty_min=8
+ro.config.dha_lmk_scale=1
+sys.config.samp_spcm_enable=false
+sys.config.spcm_db_enable=false
+sys.config.spcm_db_launcher=false
+sys.config.spcm_preload_enable=false
