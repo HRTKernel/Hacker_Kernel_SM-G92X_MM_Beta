@@ -108,12 +108,12 @@ REPACK_KERNEL()
 	      rm output_kernel/*.zip
 
 	      echo "Making boot.img ..."
-	      #$DTBTOOL -o dt.img -s $BOARD_KERNEL_PAGESIZE -p ../scripts/dtc/ ../arch/arm64/boot/dts/ | sleep 1
+	      $DTBTOOL -o dt.img -s $BOARD_KERNEL_PAGESIZE -p ../scripts/dtc/ ../arch/arm64/boot/dts/ | sleep 1
 
 	      cp -r Image boot/zImage
-	      #chmod a+r dt.img
-	      #cp dt.img boot/dt.img
-	      #cp dt.img backup_image/dt.img
+	      chmod a+r dt.img
+	      cp dt.img boot/dt.img
+	      cp dt.img backup_image/dt.img
 
 	      ./mkboot boot boot.img
 	      #./mkboot boot.img boot
@@ -126,12 +126,12 @@ REPACK_KERNEL()
 
 	      echo "Making cleaning ..."
 	      cd ..
-	      #rm dt.img
+	      rm dt.img
 	      rm boot.img
 	      rm Image
 	      rm zip_files/kernel/boot.img
 	      rm boot/zImage
-	      #rm boot/dt.img
+	      rm boot/dt.img
 	      
 	      echo "All Done!"
 	
